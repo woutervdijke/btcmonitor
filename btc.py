@@ -13,5 +13,5 @@ def getbtc():
 
 @app.route("/")
 def hello():
-	html = "<div style=\"width: 450px; margin:auto; margin-top: 50px; text-align: center;\"><h2>De waarde van mijn bitcoin is</h2><h1>"+getbtc()+"</h1></div>"
+	html = "<div style=\"width: auto; margin:auto; margin-top: 50px; text-align: center;\"><h2>De waarde van mijn bitcoin is</h2><h1>"+getbtc()+"</h1></div>"
 	return html
