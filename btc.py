@@ -18,4 +18,4 @@ def hello():
 
 @app.route("/raw")
 def rawbtc():
-	return getbtc()
+	return getbtc()+"\r\n"
