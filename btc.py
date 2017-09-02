@@ -28,7 +28,7 @@ def geteth(r):
 @app.route("/")
 def hello():
 	getcrypto()
-	html = "<div style=\"width: auto; margin:auto; margin-top: 50px; text-align: center;\"><h2>De waarde van mijn bitcoin is</h2><h1>"+mybtcprice+"</h1><h2>De waarde van mijn ethereum is</h2><h1>"+myetherprice+"</h1> (v=cryptocompare3)</div>"
+	html = "<div style=\"width: auto; margin:auto; margin-top: 50px; text-align: center;\"><h2>De waarde van mijn bitcoin is</h2><h1>"+mybtcprice+"</h1><h2>De waarde van mijn ethereum is</h2><h1>"+myetherprice+"</h1></div>"
 	return html
 
 @app.route("/raw")
