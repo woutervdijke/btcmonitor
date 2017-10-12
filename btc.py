@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 
-from flask import Flask
+from flask import Flask, render_template
 app = Flask(__name__)
+
+from setup import *
 
 import requests
 
@@ -15,21 +17,20 @@ def getcrypto():
 
 def getbtc(r):
 	bitcoinprice = r.json()['BTC']['EUR']
-	mybtc = 0.04362136 * bitcoinprice
+	mybtc = btcsetup * bitcoinprice
 	global mybtcprice
 	mybtcprice = "€"+str("%.2f" % round(mybtc,2))
 
 def geteth(r):
 	etherprice = r.json()['ETH']['EUR']
-	myether = 0.31298156 * etherprice
+	myether = ethsetup * etherprice
 	global myetherprice
 	myetherprice = "€" + str("%.2f" % round(myether, 2))
 
 @app.route("/")
 def hello():
 	getcrypto()
-	html = "<div style=\"width: auto; margin:auto; margin-top: 50px; text-align: center;\"><h2>De waarde van mijn bitcoin is</h2><h1>"+mybtcprice+"</h1><h2>De waarde van mijn ethereum is</h2><h1>"+myetherprice+"</h1></div>"
-	return html
+	return render_template('btc.html', btcprice=mybtcprice, ethprice=myetherprice)
 
 @app.route("/raw")
 def rawbtc():
