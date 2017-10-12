@@ -29,7 +29,7 @@ def geteth(r):
 	global myetherprice
 	myetherprice = "€" + str("%.2f" % round(myether, 2))
 
-@app.route("/")
+@app.route("/btc")
 def hello():
 	getcrypto()
 	return render_template('btc.html', btcprice=mybtcprice, ethprice=myetherprice)
