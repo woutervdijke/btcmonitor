@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Waarde BTC/ETH</title>
+    <link rel="stylesheet" href="/static/btcstyle.css" type="text/css">
 </head>
 <body>
 
@@ -10,11 +11,11 @@
 
 <h2>De waarde van mijn bitcoin is</h2>
 
-    <h1>{{ btcprice }} <span class="pricechange">({{ btcchange }}</span></h1>
+    <h1>{{ btcprice }} <span class="pricechange {{ btcdir }}">({{ btcchange }})</span></h1>
 
 <h2>De waarde van mijn ethereum is</h2>
 
-    <h1>{{ ethprice }} <span class="pricechange">({{ ethchange }}</span></h1>
+    <h1>{{ ethprice }} <span class="pricechange {{ ethdir }}">({{ ethchange }})</span></h1>
 
 
 </div>

@@ -22,21 +22,31 @@ def getbtc(r):
 	mybtc = btcsetup * bitcoinprice
 	global mybtcprice
 	global btcchange
+	global btcdir
 	btcchange = "€" + str("%.2f" % round(mybtc - 100, 2))
 	mybtcprice = "€"+str("%.2f" % round(mybtc,2))
+	if mybtc > 100:
+		btcdir = "positive"
+	else:
+		btcdir = "negative"
 
 def geteth(r):
 	etherprice = r.json()['ETH']['EUR']
 	myether = ethsetup * etherprice
 	global myetherprice
 	global ethchange
+	global ethdir
 	ethchange = "€" + str("%.2f" % round(myether - 100, 2))
 	myetherprice = "€" + str("%.2f" % round(myether, 2))
+	if myether > 100:
+		ethdir = "positive"
+	else:
+		ethdir = "negative"
 
 @app.route("/btc")
 def hello():
 	getcrypto()
-	return render_template('btc.html', btcprice=mybtcprice, ethprice=myetherprice, btcchange=btcchange, ethchange=ethchange)
+	return render_template('btc.html', btcprice=mybtcprice, ethprice=myetherprice, btcchange=btcchange, ethchange=ethchange, btcdir=btcdir, ethdir=ethdir)
 
 @app.route("/raw")
 def rawbtc():

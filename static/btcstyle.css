@@ -1,0 +1,12 @@
+.pricechange {
+    font-style: italic;
+    font-size: small;
+}
+
+.pricechange.positive {
+    color: forestgreen;
+}
+
+.pricechange.negative {
+    color: orangered;
+}
