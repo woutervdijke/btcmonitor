@@ -20,6 +20,7 @@ def getcrypto():
 
 def getbtc(r):
 	bitcoinprice = r.json()['BTC']['EUR']
+	global mybtc
 	mybtc = btcsetup * bitcoinprice
 	global mybtcprice
 	global btcchange
@@ -33,6 +34,7 @@ def getbtc(r):
 
 def geteth(r):
 	etherprice = r.json()['ETH']['EUR']
+	global myether
 	myether = ethsetup * etherprice
 	global myetherprice
 	global ethchange
@@ -46,6 +48,7 @@ def geteth(r):
 		
 def getbch(r):
 	bchprice = r.json()['BCH']['EUR']
+	global mycash
 	mycash = bchsetup * bchprice
 	global mybchprice
 	global bchchange
@@ -60,7 +63,13 @@ def getbch(r):
 @app.route("/btc")
 def hello():
 	getcrypto()
-	return render_template('btc.html', btcprice=mybtcprice, ethprice=myetherprice, bchprice=mybchprice, btcchange=btcchange, ethchange=ethchange, bchchange=bchchange, btcdir=btcdir, ethdir=ethdir, bchdir=bchdir)
+	totalchange = mybtc + myether + mycash - 200
+	if totalchange > 0:
+		totaldir = "positive"
+	else:
+		totaldir = "negative"
+	totalchange = "€" + str("%.2f" % round(totalchange, 2))
+	return render_template('btc.html', btcprice=mybtcprice, ethprice=myetherprice, bchprice=mybchprice, btcchange=btcchange, ethchange=ethchange, bchchange=bchchange, btcdir=btcdir, ethdir=ethdir, bchdir=bchdir, totalchange=totalchange, totaldir=totaldir)
 
 @app.route("/raw")
 def rawbtc():
